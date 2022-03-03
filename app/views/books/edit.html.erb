@@ -1,9 +1,36 @@
 <div class='container'>
+
+  <% if @book.errors.any? %>
+    <h3 class="text-danger"><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>Editing Book</h1>
-  		<%= render 'form', book: @book %>
-  		<%= link_to 'Show', @book, class: "book_#{@book.id}" %> |
-  		<%= link_to 'Back', books_path, class: "back" %>
+  		<%= form_with model: @book, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :title %><br>
+          <%= f.text_field :title, autofocus: true, id:"inputTitle" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :opinion %><br>
+          <%= f.text_area :body, autofocus: true, id:"inputBody" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update Book", class: "btn btn-success" %>
+        </div>
+
+        <%= link_to "Show", book_path(@book) %>
+        |
+        <%= link_to "Back", books_path %>
+      <% end %>
+  	</div>
   </div>
 </div>

@@ -1,4 +1,14 @@
 <div class='container px-5 px-sm-0'>
+
+  <% if @book.errors.any? %>
+    <h3 class="text-danger"><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+  </ul>
+  <% end %>
+
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
