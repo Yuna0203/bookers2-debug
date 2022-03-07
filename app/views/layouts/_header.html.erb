@@ -55,11 +55,15 @@
     </div>
   </nav>
 
-  <div class="serch-form">
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword %>
-      <%= f.submit "検索" %>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="serch-form">
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :word %>
+        <%= f.select :range, options_for_select([['User'], ['Book']]) %>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_macth"],["後方一致","backword_match"], ["部分一致","partial_macth"]]) %>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
+  <% end %>
 
 </header>
