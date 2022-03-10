@@ -18,8 +18,8 @@
         <td><%= book.body %></td>
 
         <%# いいね機能 %>
-        <td id="">
-          <%= render "favorites/favorite", book: book %>
+        <td id="favorite_buttons_<%= book.id %>">
+          <%= render "favorites/favorites", book: book %>
         </td>
 
         <td>
